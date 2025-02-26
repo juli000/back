@@ -13,7 +13,6 @@ export default function PaymentConfirmationContent() {
   const gameId = searchParams.get('gameId');
   const bet = searchParams.get('bet');
   const keyType = searchParams.get('keyType');
-  const tax = searchParams.get('tax');
   const isPlayer2 = searchParams.get('isPlayer2') === 'true';
   const userName = searchParams.get('name');
 
@@ -120,7 +119,6 @@ export default function PaymentConfirmationContent() {
             <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
             <div className="bg-[#2a2a2a] p-4 rounded-lg">
               <p className="mb-2">Amount: {bet} {keyType}</p>
-              <p className="mb-4">Tax: {tax}</p>
               <p className="text-gray-400">Send to bot: @DnDFlips</p>
             </div>
           </div>
