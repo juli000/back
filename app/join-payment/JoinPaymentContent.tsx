@@ -17,17 +17,6 @@ export default function JoinPaymentContent() {
   const player1Call = searchParams.get('player1Call');
   const player2Call = player1Call === 'Heads' ? 'Tails' : 'Heads';
 
-  const calculateTax = () => {
-    const betAmount = Number(bet);
-    if (keyType === 'Skull Keys') {
-      const goldKeysRequired = Math.ceil(betAmount / 4);
-      return `${goldKeysRequired} gold key${goldKeysRequired > 1 ? 's' : ''} (1 per 4 skull keys)`;
-    } else if (keyType === 'Gold Keys') {
-      return `${betAmount} purple rarity gem${betAmount > 1 ? 's' : ''} (1 per gold key)`;
-    }
-    return '';
-  };
-
   const handleSubmit = async () => {
     if (!name || !gameId) {
       alert('Please enter your in-game name');
@@ -43,7 +32,7 @@ export default function JoinPaymentContent() {
       });
 
       if (result.success && result.payment_code) {
-        router.push(`/payment-confirmation?gameId=${gameId}&bet=${bet}&keyType=${keyType}&tax=${calculateTax()}&isPlayer2=true&name=${name}&paymentCode=${result.payment_code}`);
+        router.push(`/payment-confirmation?gameId=${gameId}&bet=${bet}&keyType=${keyType}&isPlayer2=true&name=${name}&paymentCode=${result.payment_code}`);
       }
     } catch (error) {
       console.error('Error joining game:', error);
@@ -85,7 +74,6 @@ export default function JoinPaymentContent() {
               <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
               <div className={sharedStyles.infoBox}>
                 <p className="mb-2">Amount: {bet} {keyType}</p>
-                <p className="mb-4">Tax: {calculateTax()}</p>
                 <p className="text-gray-400">Send to bot: @DnDFlips</p>
               </div>
             </div>

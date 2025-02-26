@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPendingGame } from '@/app/actions';
 
@@ -10,22 +10,7 @@ export default function CreateGame() {
   const [numKeys, setNumKeys] = useState(4);
   const [call, setCall] = useState('Tails');
   const [name, setName] = useState('');
-  const [tax, setTax] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    calculateTax();
-  }, [keyType, numKeys]);
-
-  const calculateTax = () => {
-    if (keyType === 'Skull Keys') {
-      const goldKeysRequired = Math.ceil(numKeys / 4);
-      setTax(`+ ${goldKeysRequired} gold key${goldKeysRequired > 1 ? 's' : ''} (1 per 4 skull keys)`);
-    } else if (keyType === 'Gold Keys') {
-      const gemsRequired = numKeys;
-      setTax(`+ ${gemsRequired} purple rarity gem${gemsRequired > 1 ? 's' : ''} (1 per gold key)`);
-    }
-  };
 
   const handleSubmit = async () => {
     if (!name || !numKeys) {
@@ -42,7 +27,7 @@ export default function CreateGame() {
         keyType,
       });
       
-      router.push(`/payment-confirmation?bet=${numKeys}&keyType=${keyType}&tax=${encodeURIComponent(tax)}&gameId=${pendingGame.id}&name=${name}`);
+      router.push(`/payment-confirmation?bet=${numKeys}&keyType=${keyType}&gameId=${pendingGame.id}&name=${name}`);
     } catch (error) {
       console.error('Failed to create game:', error);
       alert('Failed to create game. Please try again.');
@@ -101,11 +86,6 @@ export default function CreateGame() {
                 <option>Gold Keys</option>
               </select>
             </div>
-          </div>
-
-          <div className="bg-[#2a2a2a] rounded p-4">
-            <p className="text-gray-400">Required Tax:</p>
-            <p className="text-white">{tax}</p>
           </div>
 
           <div className="flex gap-4 mt-8">
