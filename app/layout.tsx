@@ -1,4 +1,3 @@
-
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
@@ -9,8 +8,15 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "DnD Flips",
+  description: "Flip coins and win keys in DnD Flips",
+  icons: {
+    icon: {
+      url: "/favicon.ico",
+      type: "image/x-icon",
+    },
+    shortcut: { url: "/favicon.ico", type: "image/x-icon" },
+  },
 };
 
 const geistSans = Geist({
@@ -20,7 +26,7 @@ const geistSans = Geist({
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={geistSans.className}>
       <body className="bg-gray-800 text-white">
         <div className="flex flex-col min-h-screen">
           <main className="flex-1">{children}</main>

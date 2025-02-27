@@ -39,17 +39,26 @@ export default function AdminPage() {
     }
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // You should move this to an environment variable in production
-    const correctPassword = 'admin123';
     
-    if (password === correctPassword) {
-      setIsAuthenticated(true);
-      localStorage.setItem('adminAuth', 'true');
-      setError('');
-    } else {
-      setError('Incorrect password');
+    try {
+      const response = await fetch('/api/admin/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+        setError('');
+      } else {
+        setError('Invalid password');
+      }
+    } catch (err) {
+      setError('An error occurred');
     }
   };
 
@@ -60,36 +69,33 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className={sharedStyles.container}>
-        <div className={sharedStyles.contentWrapper}>
-          <h1 className={sharedStyles.heading}>Admin Login</h1>
+      <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4">
+        <div className="w-full max-w-md bg-gray-800 rounded-lg p-8">
+          <h1 className="text-2xl font-bold mb-6 text-center">Admin Login</h1>
           
-          <div className={sharedStyles.card}>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-300">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
-              {error && (
-                <p className="text-red-500 text-sm">{error}</p>
-              )}
-              <button
-                type="submit"
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Login
-              </button>
-            </form>
-          </div>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-2">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:border-white focus:outline-none"
+                placeholder="Enter admin password"
+              />
+            </div>
+            
+            {error && (
+              <p className="text-red-500 text-sm">{error}</p>
+            )}
+            
+            <button
+              type="submit"
+              className="w-full bg-white text-black py-2 rounded hover:bg-gray-200 transition-colors"
+            >
+              Login
+            </button>
+          </form>
         </div>
       </div>
     );
