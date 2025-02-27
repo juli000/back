@@ -62,13 +62,16 @@ export default function Home() {
                 <h2 className="text-xl text-white">
                   {game.user1} - {game.bet} {game.key_type}
                 </h2>
-                <p className="text-gray-400">Status: Waiting for Player 2</p>
               </div>
               <button 
                 onClick={() => handleJoinGame(game.id)}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                className={`${
+                  game.users_paid === 2 
+                    ? 'bg-gray-500 hover:bg-gray-600' 
+                    : 'bg-blue-500 hover:bg-blue-600'
+                } text-white px-4 py-2 rounded`}
               >
-                Join Game
+                {game.users_paid === 2 ? 'View Game' : 'Join Game'}
               </button>
             </div>
 
