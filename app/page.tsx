@@ -1,6 +1,6 @@
 'use client';
 
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { sharedStyles } from './layout/styles';
@@ -8,10 +8,30 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const router = useRouter();
-  const supabase = createClient();
   const [games, setGames] = useState<any[]>([]);
 
   useEffect(() => {
+    const supabase = createClient();
+    
+    const fetchGames = async () => {
+      const { data } = await supabase
+        .from('instruments')
+        .select()
+        .order('date_created', { ascending: false });
+      
+      // Sort games: joinable games first, then by date
+      const sortedGames = data?.sort((a, b) => {
+        // First, sort by joinable status (users_paid < 2)
+        if (a.users_paid < 2 && b.users_paid === 2) return -1;
+        if (a.users_paid === 2 && b.users_paid < 2) return 1;
+        
+        // If both games have the same joinable status, sort by date (newest first)
+        return new Date(b.date_created).getTime() - new Date(a.date_created).getTime();
+      });
+
+      setGames(sortedGames || []);
+    };
+
     fetchGames();
 
     // Subscribe to changes
@@ -30,25 +50,6 @@ export default function Home() {
       channel.unsubscribe();
     };
   }, []);
-
-  const fetchGames = async () => {
-    const { data } = await supabase
-      .from('instruments')
-      .select()
-      .order('date_created', { ascending: false });
-    
-    // Sort games: joinable games first, then by date
-    const sortedGames = data?.sort((a, b) => {
-      // First, sort by joinable status (users_paid < 2)
-      if (a.users_paid < 2 && b.users_paid === 2) return -1;
-      if (a.users_paid === 2 && b.users_paid < 2) return 1;
-      
-      // If both games have the same joinable status, sort by date (newest first)
-      return new Date(b.date_created).getTime() - new Date(a.date_created).getTime();
-    });
-
-    setGames(sortedGames || []);
-  };
 
   const handleJoinGame = (gameId: number) => {
     router.push(`/game-view?gameId=${gameId}`);
