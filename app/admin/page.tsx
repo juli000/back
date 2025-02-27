@@ -53,6 +53,7 @@ export default function AdminPage() {
 
       if (response.ok) {
         setIsAuthenticated(true);
+        localStorage.setItem('adminAuth', 'true');
         setError('');
       } else {
         setError('Invalid password');
