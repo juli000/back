@@ -155,7 +155,7 @@ export default function AdminGameList() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {games?.map((game) => (
         <div key={game.id} className="bg-[#1a1a1a] rounded-lg p-6">
           <div className="flex justify-between items-start mb-4">
@@ -254,7 +254,7 @@ export default function AdminGameList() {
                     )}
                   </>
                 ) : (
-                  <h3 className="text-lg text-gray-400">Waiting for Player 2 to join...</h3>
+                  <h3 className="text-lg text-gray-400">Waiting for Player 2...</h3>
                 )}
               </div>
               {game.user2 && !game.user2_payment && (
@@ -270,17 +270,6 @@ export default function AdminGameList() {
                 <span className="text-green-500">✓ Payment Verified</span>
               )}
             </div>
-          </div>
-
-          {/* Game Status */}
-          <div className="mt-4 text-gray-400">
-            <p>Status: {
-              game.users_paid === 2 
-                ? 'Game Ready' 
-                : game.user2 
-                  ? 'Waiting for Payments' 
-                  : 'Waiting for Player 2'
-            }</p>
           </div>
         </div>
       ))}
