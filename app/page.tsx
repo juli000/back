@@ -46,7 +46,17 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#121212]">
       <div className="flex justify-between items-center p-4 bg-[#1a1a1a]">
-        <h1 className="text-2xl font-bold text-white">DnDFlips</h1>
+        <div className="flex items-center">
+          <h1 className="text-2xl font-bold text-white">DnDFlips</h1>
+          <a 
+            href="https://discord.gg/kJjsweaB"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-2 rounded flex items-center ml-12"
+          >
+            Discord
+          </a>
+        </div>
         <Link href="/create">
           <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
             Create Game
@@ -59,9 +69,14 @@ export default function Home() {
           <div key={game.id} className="bg-[#1a1a1a] rounded-lg p-6 mb-4">
             <div className="flex justify-between items-start">
               <div>
-                <h2 className="text-xl text-white">
+                <h2 className="text-xl text-white mb-2">
                   {game.user1} - {game.bet} {game.key_type}
                 </h2>
+                {game.user2 && (
+                  <p className="text-gray-400">
+                    vs {game.user2}
+                  </p>
+                )}
               </div>
               <button 
                 onClick={() => handleJoinGame(game.id)}
