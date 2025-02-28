@@ -63,7 +63,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#121212]">
       <div className="flex justify-between items-center p-4 bg-[#1a1a1a] relative">
         <a 
-          href="https://discord.gg/kJjsweaB"
+          href="https://discord.gg/s5FhyRty2S"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-2 rounded"
