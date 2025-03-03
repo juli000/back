@@ -62,7 +62,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#121212]">
-      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-[#161616] via-[#2a2a2a] to-[#161616] 
+      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-[#161616] via-[#161616] to-[#2a2a2a] 
         backdrop-blur-md bg-opacity-80 border-b border-white/5 shadow-lg">
         <div className="flex items-center gap-4 relative">
           <div className="relative">
@@ -112,9 +112,9 @@ export default function Home() {
 
       <RecentOutcomes />
 
-      <div className="px-4 pb-4 mt-4">
+      <div className="px-4 pb-4 mt-4 overflow-hidden">
         {games?.map((game) => (
-          <div key={game.id} className="bg-[#1a1a1a] rounded-lg p-6 mb-4">
+          <div key={game.id} className="bg-[#1a1a1a] hover:bg-[#222222] rounded-lg p-6 mb-4 transform hover:scale-[1.01] transition-all duration-200 cursor-pointer">
             <div className="flex justify-between items-start">
               <div>
                 <h2 className="text-xl text-white mb-2">
