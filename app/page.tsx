@@ -62,7 +62,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#121212]">
-      <div className="flex items-center p-4 bg-[#1a1a1a] gap-4">
+      <div className="flex items-center justify-between p-4 bg-[#1a1a1a] gap-4">
         <div className="flex items-center gap-3">
           <img src="/favicon.ico" alt="Logo" className="w-8 h-8" />
           <h1 className="text-2xl font-bold text-white">DnDFlips</h1>
@@ -82,8 +82,12 @@ export default function Home() {
           <span className="text-sm italic text-gray-400">Tips are appreciated!</span>
         </div>
         <div className="flex-grow"></div>
-        <Link href="/create">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+        <Link href="/create" className="self-center -mt-2">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2.5 rounded-lg font-semibold
+            transform hover:-translate-y-1 transition-all duration-200
+            shadow-[0_8px_0_rgb(30,64,175),0_15px_20px_rgba(0,0,0,0.35)]
+            active:translate-y-1 active:shadow-[0_4px_0_rgb(30,64,175),0_8px_10px_rgba(0,0,0,0.35)]
+            border-b-4 border-blue-700">
             Create Game
           </button>
         </Link>
@@ -112,9 +116,11 @@ export default function Home() {
                 onClick={() => handleJoinGame(game.id)}
                 className={`${
                   game.users_paid === 2 
-                    ? 'bg-gray-500 hover:bg-gray-600' 
-                    : 'bg-blue-500 hover:bg-blue-600'
-                } text-white px-4 py-2 rounded`}
+                    ? 'bg-gray-500 hover:bg-gray-600 border-gray-700 shadow-[0_8px_0_rgb(55,65,81),0_15px_20px_rgba(0,0,0,0.35)] active:shadow-[0_4px_0_rgb(55,65,81),0_8px_10px_rgba(0,0,0,0.35)]' 
+                    : 'bg-blue-500 hover:bg-blue-600 border-blue-700 shadow-[0_8px_0_rgb(30,64,175),0_15px_20px_rgba(0,0,0,0.35)] active:shadow-[0_4px_0_rgb(30,64,175),0_8px_10px_rgba(0,0,0,0.35)]'
+                } text-white px-6 py-3 rounded-lg font-semibold
+                transform hover:-translate-y-1 transition-all duration-200
+                active:translate-y-1 border-b-4`}
               >
                 {game.users_paid === 2 ? 'View Game' : 'Join Game'}
               </button>
