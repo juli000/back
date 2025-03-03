@@ -91,3 +91,18 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+@layer utilities {
+  .animate-rainbow-text {
+    animation: rainbow 8s linear infinite;
+  }
+  
+  @keyframes rainbow {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+}

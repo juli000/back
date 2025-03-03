@@ -77,8 +77,7 @@ export default function Home() {
           </h1>
         </div>
         <div className="flex items-center">
-          <span className="text-sm italic text-gray-400 relative after:content-[''] after:absolute after:bottom-0 after:left-0 
-            after:w-0 after:h-[1px] after:bg-gray-400 hover:after:w-full after:transition-all after:duration-300 mr-8">
+          <span className="text-sm italic relative mr-8 pb-0.5 px-[2px] animate-rainbow-text bg-gradient-to-r from-[#FF0000] via-[#FF4500] via-[#FFA500] via-[#FFFF00] via-[#9ACD32] via-[#32CD32] via-[#00FF7F] via-[#40E0D0] via-[#00BFFF] via-[#0000FF] via-[#8A2BE2] via-[#FF00FF] to-[#FF0000] bg-[length:200%_auto] bg-clip-text text-transparent relative after:content-[''] after:absolute after:bottom-0 after:left-[-2px] after:w-0 after:h-[1px] after:bg-gradient-to-r after:from-[#FF0000] via-[#FF4500] via-[#FFA500] via-[#FFFF00] via-[#9ACD32] via-[#32CD32] via-[#00FF7F] via-[#40E0D0] via-[#00BFFF] via-[#0000FF] via-[#8A2BE2] via-[#FF00FF] after:to-[#FF0000] hover:after:w-[calc(100%+4px)] after:transition-all after:duration-300">
             Tips are appreciated!
           </span>
         </div>
