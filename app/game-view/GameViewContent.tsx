@@ -112,17 +112,14 @@ export default function GameViewContent() {
 
   if (!game) {
     return (
-      <div className={sharedStyles.container}>
-        <div className={sharedStyles.contentWrapper}>
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-        </div>
+      <div className="min-h-screen bg-[#121212] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#121212] bg-gradient-to-b from-black/50 to-black/30 text-white flex flex-col items-center justify-center relative overflow-hidden
-      before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0%,_transparent_100%)] before:opacity-50">
+    <div className="min-h-screen bg-[#121212] text-white flex flex-col items-center justify-center relative overflow-hidden">
       <div className="fixed top-4 left-4 z-10">
         <button
           onClick={handleExit}
