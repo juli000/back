@@ -15,7 +15,7 @@ interface CoinFlipProps {
 export default function CoinFlip({ result, onAnimationEnd, isCompleted, shouldStartCountdown, isFirstSpin }: CoinFlipProps) {
   const [isFlipping, setIsFlipping] = useState(false);
   const [showResult, setShowResult] = useState(false);
-  const [countdown, setCountdown] = useState(15);
+  const [countdown, setCountdown] = useState(10);
   const [animationComplete, setAnimationComplete] = useState(false);
 
   // Predefined animations for heads and tails
@@ -33,7 +33,7 @@ export default function CoinFlip({ result, onAnimationEnd, isCompleted, shouldSt
   // Start countdown immediately
   useEffect(() => {
     setShowResult(false);
-    setCountdown(15);
+    setCountdown(10);
     setAnimationComplete(false);
   }, []);
 
