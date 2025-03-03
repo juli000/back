@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  perspective: 1000px;
+  perspective: 1200px;
 }
 
 .coin {
@@ -26,20 +26,58 @@
   font-size: 2rem;
   font-weight: bold;
   backface-visibility: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border: 4px solid rgba(255, 255, 255, 0.2);
+  background-size: 200% 200%;
+  border: 8px solid #c4c4c4;
+  box-shadow: 
+    inset 0 0 15px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(255, 255, 255, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.side::before {
+  content: '';
+  position: absolute;
+  width: calc(100% + 16px);
+  height: 8px;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0.2), 
+    rgba(255,255,255,0.8), 
+    rgba(255,255,255,0.2)
+  );
+  top: 50%;
+  left: -8px;
+  transform: translateY(-50%);
+  filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.coin:hover .side::before {
+  opacity: 1;
 }
 
 .heads {
-  background: linear-gradient(45deg, #FFD700, #FFA500);
-  transform: rotateY(0deg);
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  background: radial-gradient(circle at 30% 30%,
+    #ffd700,
+    #ffc800 20%,
+    #ffb300 40%,
+    #ffa500 60%,
+    #ff8c00 80%
+  );
+  transform: rotateY(0deg) translateZ(4px);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .tails {
-  background: linear-gradient(45deg, #C0C0C0, #808080);
-  transform: rotateY(180deg);
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  background: radial-gradient(circle at 30% 30%,
+    #e0e0e0,
+    #d0d0d0 20%,
+    #c0c0c0 40%,
+    #a0a0a0 60%,
+    #808080 80%
+  );
+  transform: rotateY(180deg) translateZ(4px);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .countdown {
