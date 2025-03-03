@@ -1,6 +1,7 @@
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -32,6 +33,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <main className="flex-1">{children}</main>
           {/* Removed header and footer */}
         </div>
+        <Analytics />
       </body>
     </html>
   );
